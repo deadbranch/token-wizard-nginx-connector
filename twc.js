@@ -17,8 +17,9 @@ function int32ToBytes(num) {
 }
 
 console.log("lalka");
-
 var requestQueue = [];
+var inputData;
+
 
 exports.init = function (_tokenLength) {
     tokenLength = _tokenLength;
@@ -43,10 +44,47 @@ exports.connect = function () {
     });
 };
 
+var inputBuffSize = 65536;
+var inputBuff = new Buffer(inputBuffSize);
+var inputWriteOffset = 0;
+var inputReadOffset = 0;
+var inputLength = 0;
+function handlePacket(packet, size) {
+    console.log(packet);
+}
+
+function handleRecv() {
+    while(inputLength >= 4)
+    {
+        var size = inputBuff.readUInt32LE(inputReadOffset);
+        if((size + 4) > inputLength)
+            break;
+        console.log(size);
+        handlePacket(inputBuff.slice(inputReadOffset + 4, inputReadOffset + 4 + size), size);
+        inputReadOffset += size + 4;
+        inputLength -= size + 4;
+    }
+    if(inputLength > 0) {
+        inputBuff.copy(inputBuff, 0, inputReadOffset, inputLength);
+    }
+    inputReadOffset = 0;
+    inputWriteOffset = inputLength;
+}
+
 client.on('data', function(data) {
-    console.log('Received: ' + data);
-    //client.destroy(); // kill client after server's response
+    var offset =0;
+    var bytesLeft = data.length;
+    while(bytesLeft > 0) {
+        var bytesToCopy = Math.min(inputBuffSize-inputWriteOffset, bytesLeft);
+        data.copy(inputBuff, inputWriteOffset, offset, data.length);
+        bytesLeft -= bytesToCopy;
+        offset += bytesToCopy;
+        inputWriteOffset += bytesToCopy;
+        inputLength += bytesToCopy;
+        handleRecv();
+    }
 });
+
 
 client.on('close', function() {
     console.log('Connection closed');
