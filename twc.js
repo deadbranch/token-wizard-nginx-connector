@@ -1,9 +1,17 @@
 var net = require('net');
+var LinkedList = require('./LinkedList').LinkedList
 
 var ClientCommands = {
-    createToken : 0x0,
+    genToken : 0x0,
     destroyToken : 0x1,
     getToken : 0x2
+};
+
+var ServerResponse = {
+    tokenCreated : 0x0,
+    tokenDestroyed : 0x1,
+    tokenDoesNotExist : 0x2,
+    tokenExists : 0x3
 };
 
 var client = new net.Socket();
@@ -17,7 +25,7 @@ function int32ToBytes(num) {
 }
 
 console.log("lalka");
-var requestQueue = [];
+var requestQueue = new LinkedList();
 var inputData;
 
 
@@ -26,6 +34,11 @@ exports.init = function (_tokenLength) {
 };
 
 exports.get_token = function(token, handler) {
+    if(requestQueue.length > 65536)
+    {
+        handler(true);
+        return;
+    }
     token += '\0';
     var buff = new Buffer(token.length+1+4);
     buff.writeUInt32LE(token.length+1, 0);
@@ -33,7 +46,20 @@ exports.get_token = function(token, handler) {
     buff.write(token, 5, token.length, 'ascii');
     client.write(buff);
     requestQueue.push(handler);
-    handler(false, {});
+};
+
+exports.gen_token = function(dataBuf, handler) {
+    if(requestQueue.length > 65536)
+    {
+        handler(true);
+        return;
+    }
+    var buff = new Buffer(dataBuf.length+1+4);
+    dataBuf.copy(buff, 5, 0, dataBuf.length);
+    buff.writeUInt32LE(dataBuf.length+1, 0);
+    buff.writeUInt8(ClientCommands.genToken, 4);
+    client.write(buff);
+    requestQueue.push(handler);
 };
 
 
@@ -45,12 +71,48 @@ exports.connect = function () {
 };
 
 var inputBuffSize = 65536;
-var inputBuff = new Buffer(inputBuffSize);
+var inputBuff = Buffer.allocUnsafe(inputBuffSize);
 var inputWriteOffset = 0;
 var inputReadOffset = 0;
 var inputLength = 0;
-function handlePacket(packet, size) {
-    console.log(packet);
+
+function handlePacket(packet) {
+    var token = packet.readUInt8(0);
+    switch(token) {
+        case ServerResponse.tokenExists:
+        {
+            var retBuff = Buffer.allocUnsafe(packet.length-1);
+            packet.copy(retBuff, 0, 1, packet.length);
+            if(packet.length != 10)
+                var a = 2;
+            var handler = requestQueue.pop().value;
+            setTimeout(function() {
+                handler(false, retBuff);
+            }, 0);
+            break;
+        }
+        case ServerResponse.tokenCreated:
+        {
+            var retBuff = Buffer.allocUnsafe(packet.length);
+            packet.copy(retBuff, 0, 0, packet.length);
+            var handler = requestQueue.pop().value;
+            setTimeout(function() {
+                handler(false, retBuff);
+            }, 0);
+            break;
+        }
+        case ServerResponse.tokenDoesNotExist:
+        {
+            var handler = requestQueue.pop().value;
+            setTimeout(function() {
+                handler(true);
+            }, 0);
+            break;
+        }
+        default: {
+            console.log("THERE IS NO HANDLER");
+        }
+    }
 }
 
 function handleRecv() {
@@ -59,7 +121,6 @@ function handleRecv() {
         var size = inputBuff.readUInt32LE(inputReadOffset);
         if((size + 4) > inputLength)
             break;
-        console.log(size);
         handlePacket(inputBuff.slice(inputReadOffset + 4, inputReadOffset + 4 + size), size);
         inputReadOffset += size + 4;
         inputLength -= size + 4;
@@ -72,7 +133,7 @@ function handleRecv() {
 }
 
 client.on('data', function(data) {
-    var offset =0;
+    var offset = 0;
     var bytesLeft = data.length;
     while(bytesLeft > 0) {
         var bytesToCopy = Math.min(inputBuffSize-inputWriteOffset, bytesLeft);
