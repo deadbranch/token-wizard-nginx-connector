@@ -93,8 +93,8 @@ function handlePacket(packet) {
         }
         case ServerResponse.tokenCreated:
         {
-            var retBuff = Buffer.allocUnsafe(packet.length);
-            packet.copy(retBuff, 0, 0, packet.length);
+            var retBuff = Buffer.allocUnsafe(packet.length-1);
+            packet.copy(retBuff, 0, 1, packet.length);
             var handler = requestQueue.pop().value;
             setTimeout(function() {
                 handler(false, retBuff);

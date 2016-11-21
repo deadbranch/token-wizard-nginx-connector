@@ -12,15 +12,17 @@ var foo;
 
 
 foo = function() {
-    twc.get_token("Eaaaaa7F2pONMfFmmcEs2zgeo0yGMYZWd2ST6g", function (err, data) {
+    twc.get_token("DaaaaaBke1GGBe9ckfdgvxAuWogK36WP7IEP6N", function (err, data) {
         if(!err)
         {
             ++i;
             console.log(data.toString('ascii'));
-            //console.log(data.length);
+            console.log(data.length);
         }
         else
-            console.log("Threre is no token!");
+            ++i;
+
+        //console.log("Threre is no token!");
     });
     setImmediate(function () {
         foo();
@@ -39,6 +41,7 @@ twc.gen_token(Buffer.from("lalka", 'ascii'), function (err, data) {
     else
         console.log("Threre is no token!");
 });
+
 /*
 */
 var benchmark;
