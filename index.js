@@ -12,7 +12,17 @@ var foo;
 
 
 foo = function() {
-    twc.get_token("DaaaaaBke1GGBe9ckfdgvxAuWogK36WP7IEP6N", function (err, data) {
+    twc.gen_token(Buffer.from("lalka", 'ascii'), function (err, data) {
+        if(!err)
+        {
+            //console.log(data.toString('ascii'));
+            ++i;
+
+        }
+        else
+            console.log("Threre is no token!");
+    });
+   /* twc.get_token("VrB4dacv8L239RPEOsRsgHh1WGcCKHw0jiPhTv", function (err, data) {
         if(!err)
         {
             ++i;
@@ -20,10 +30,13 @@ foo = function() {
             console.log(data.length);
         }
         else
+        {
             ++i;
-
-        //console.log("Threre is no token!");
+            console.log("Threre is no token!");
+        }
     });
+    /**/
+
     setImmediate(function () {
         foo();
     });
@@ -31,16 +44,7 @@ foo = function() {
 foo();
 
 
-twc.gen_token(Buffer.from("lalka", 'ascii'), function (err, data) {
-    if(!err)
-    {
-        console.log(data.toString('ascii'));
-        ++i;
 
-    }
-    else
-        console.log("Threre is no token!");
-});
 
 /*
 */
