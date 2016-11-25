@@ -4,7 +4,7 @@ var Buffer = require('buffer').Buffer;
 
 var ClientCommands = {
     genToken : 0x0,
-    destroyToken : 0x1,
+    invalidateToken : 0x1,
     getToken : 0x2
 };
 
@@ -18,6 +18,7 @@ var ServerResponse = {
 var client = new net.Socket();
 exports.client = client;
 var tokenLength;
+
 function int32ToBytes(num) {
     arr = new ArrayBuffer(4); // an Int32 takes 4 bytes
     view = new DataView(arr);
@@ -49,20 +50,35 @@ exports.get_token = function(token, handler) {
     requestQueue.push(handler);
 };
 
-exports.gen_token = function(dataBuf, handler) {
+exports.invalidate =  function(token, handler) {
     if(requestQueue.length > 65536)
     {
         handler(true);
         return;
     }
-    var buff = new Buffer(dataBuf.length+1+4);
-    dataBuf.copy(buff, 5, 0, dataBuf.length);
-    buff.writeUInt32LE(dataBuf.length+1, 0);
-    buff.writeUInt8(ClientCommands.genToken, 4);
+    token += '\0';
+    var buff = new Buffer(token.length+1+4);
+    buff.writeUInt32LE(token.length+1, 0);
+    buff.writeUInt8(ClientCommands.invalidateToken, 4);
+    buff.write(token, 5, token.length, 'ascii');
     client.write(buff);
     requestQueue.push(handler);
 };
 
+exports.gen_token = function(dataBuf, lifeTime, handler) {
+    if(requestQueue.length > 65536)
+    {
+        handler(true);
+        return;
+    }
+    var buff = new Buffer(dataBuf.length+1+4+4);
+    dataBuf.copy(buff, 9, 0, dataBuf.length);
+    buff.writeUInt32LE(dataBuf.length+1+4, 0);
+    buff.writeUInt8(ClientCommands.genToken, 4);
+    buff.writeUInt32LE(lifeTime, 5);
+    client.write(buff);
+    requestQueue.push(handler);
+};
 
 exports.connect = function () {
     client.connect(10200, '127.0.0.1', function() {
