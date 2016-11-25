@@ -1,5 +1,6 @@
 var net = require('net');
 var LinkedList = require('./LinkedList').LinkedList
+var Buffer = require('buffer').Buffer;
 
 var ClientCommands = {
     genToken : 0x0,
