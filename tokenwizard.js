@@ -1,6 +1,9 @@
 var net = require('net');
-var LinkedList = require('./LinkedList').LinkedList
+var LinkedList = require('./LinkedList').LinkedList;
 var Buffer = require('buffer').Buffer;
+var fs = require('fs');
+
+console.log(a);
 
 var ClientCommands = {
     genToken : 0x0,
@@ -8,9 +11,9 @@ var ClientCommands = {
     getToken : 0x2
 };
 
-var ServerResponse = {
+var ServerResponses = {
     tokenCreated : 0x0,
-    tokenDestroyed : 0x1,
+    tokenInvalidated : 0x1,
     tokenDoesNotExist : 0x2,
     tokenExists : 0x3
 };
@@ -19,17 +22,12 @@ var client = new net.Socket();
 exports.client = client;
 var tokenLength;
 
-function int32ToBytes(num) {
-    arr = new ArrayBuffer(4); // an Int32 takes 4 bytes
-    view = new DataView(arr);
-    view.setUint32(0, num, false); // byteOffset = 0; litteEndian = false
-    return arr;
-}
+var sendBuff = new Buffer(65536);
+var sendBuffWritePos = 0;
+var isSendTaskStarted = false;
 
-console.log("lalka");
+
 var requestQueue = new LinkedList();
-var inputData;
-
 
 exports.init = function (_tokenLength) {
     tokenLength = _tokenLength;
@@ -80,7 +78,8 @@ exports.gen_token = function(dataBuf, lifeTime, handler) {
     requestQueue.push(handler);
 };
 
-exports.connect = function () {
+exports.connect = function (ip, port) {
+
     client.connect(10200, '127.0.0.1', function() {
         console.log('Connected');
         //client.write('Hello, server! Love, Client.');
@@ -96,7 +95,7 @@ var inputLength = 0;
 function handlePacket(packet) {
     var token = packet.readUInt8(0);
     switch(token) {
-        case ServerResponse.tokenExists:
+        case ServerResponses.tokenExists:
         {
             var retBuff = Buffer.allocUnsafe(packet.length-1);
             packet.copy(retBuff, 0, 1, packet.length);
@@ -108,7 +107,7 @@ function handlePacket(packet) {
             }, 0);
             break;
         }
-        case ServerResponse.tokenCreated:
+        case ServerResponses.tokenCreated:
         {
             var retBuff = Buffer.allocUnsafe(packet.length-1);
             packet.copy(retBuff, 0, 1, packet.length);
@@ -118,7 +117,7 @@ function handlePacket(packet) {
             }, 0);
             break;
         }
-        case ServerResponse.tokenDoesNotExist:
+        case ServerResponses.tokenDoesNotExist:
         {
             var handler = requestQueue.pop().value;
             setTimeout(function() {
@@ -126,8 +125,16 @@ function handlePacket(packet) {
             }, 0);
             break;
         }
+        case ServerResponses.tokenInvalidated:
+        {
+            var handler = requestQueue.pop().value;
+            setTimeout(function() {
+                handler(false);
+            }, 0);
+            break;
+        }
         default: {
-            console.log("THERE IS NO HANDLER");
+            console.error("THERE IS NO HANDLER");
         }
     }
 }
@@ -167,4 +174,3 @@ client.on('data', function(data) {
 client.on('close', function() {
     console.log('Connection closed');
 });
-
