@@ -1,0 +1,1254 @@
+events: ms hits
+summary: 9000 7883
+fl=
+fn=setSamplingInterval :0
+0 0 0
+
+fl=/work/token-wizard-nodejs-connector/node_modules/v8-profiler/v8-profiler.js
+fn=startProfiling v8-profiler.js:199
+199 0 0
+cfi=
+cfn=setSamplingInterval :0
+calls=0 0
+199 0 0
+
+fl=/work/token-wizard-nodejs-connector/node_modules/nodegrind/nodegrind.js
+fn=startCPU nodegrind.js:84
+84 0 0
+cfi=/work/token-wizard-nodejs-connector/node_modules/v8-profiler/v8-profiler.js
+cfn=startProfiling v8-profiler.js:199
+calls=0 199
+84 0 0
+
+fl=bootstrap_node.js
+fn=NativeModule.cache bootstrap_node.js:505
+505 1 1
+
+fl=bootstrap_node.js
+fn=runInThisContext bootstrap_node.js:403
+403 2 2
+
+fl=bootstrap_node.js
+fn=NativeModule.compile bootstrap_node.js:485
+485 0 0
+cfi=bootstrap_node.js
+cfn=runInThisContext bootstrap_node.js:403
+calls=0 403
+485 2 2
+cfi=console.js
+cfn= console.js:1
+calls=0 1
+485 1 1
+
+fl=bootstrap_node.js
+fn=NativeModule.require bootstrap_node.js:419
+419 0 0
+cfi=bootstrap_node.js
+cfn=NativeModule.cache bootstrap_node.js:505
+calls=0 505
+419 1 1
+cfi=bootstrap_node.js
+cfn=NativeModule.compile bootstrap_node.js:485
+calls=0 485
+419 3 3
+
+fl=module.js
+fn=Module._load module.js:412
+412 0 0
+cfi=bootstrap_node.js
+cfn=NativeModule.require bootstrap_node.js:419
+calls=0 419
+412 2 2
+cfi=module.js
+cfn=tryModuleLoad module.js:443
+calls=0 443
+412 27 24
+
+fl=module.js
+fn=Module.require module.js:494
+494 0 0
+cfi=module.js
+cfn=Module._load module.js:412
+calls=0 412
+494 18 16
+
+fl=internal/module.js
+fn=require module.js:17
+17 0 0
+cfi=module.js
+cfn=Module.require module.js:494
+calls=0 494
+17 18 16
+
+fl=_stream_readable.js
+fn=Readable _stream_readable.js:104
+104 1 1
+cfi=_stream_readable.js
+cfn=ReadableState _stream_readable.js:35
+calls=0 35
+104 1 1
+
+fl=_stream_duplex.js
+fn=Duplex _stream_duplex.js:23
+23 0 0
+cfi=_stream_readable.js
+cfn=Readable _stream_readable.js:104
+calls=0 104
+23 2 2
+
+fl=net.js
+fn=Socket net.js:125
+125 0 0
+cfi=_stream_duplex.js
+cfn=Duplex _stream_duplex.js:23
+calls=0 23
+125 2 2
+
+fl=internal/process/next_tick.js
+fn=TickObject next_tick.js:134
+134 1 1
+
+fl=internal/process/next_tick.js
+fn=nextTick next_tick.js:140
+140 132 116
+cfi=internal/process/next_tick.js
+cfn=TickObject next_tick.js:134
+calls=0 134
+140 1 1
+cfi=push
+cfn=push push:0
+calls=0 0
+140 38 34
+
+fl=_stream_readable.js
+fn=resume _stream_readable.js:727
+727 0 0
+cfi=internal/process/next_tick.js
+cfn=nextTick next_tick.js:140
+calls=0 140
+727 1 1
+
+fl=_stream_readable.js
+fn=Readable.resume _stream_readable.js:717
+717 0 0
+cfi=_stream_readable.js
+cfn=resume _stream_readable.js:727
+calls=0 727
+717 1 1
+
+fl=_stream_readable.js
+fn=Readable.on _stream_readable.js:686
+686 0 0
+cfi=_stream_readable.js
+cfn=Readable.resume _stream_readable.js:717
+calls=0 717
+686 1 1
+
+fl=/work/token-wizard-nodejs-connector/tokenwizard.js
+fn= tokenwizard.js:1
+1 0 0
+cfi=internal/module.js
+cfn=require module.js:17
+calls=0 17
+1 2 2
+cfi=net.js
+cfn=Socket net.js:125
+calls=0 125
+1 1 1
+cfi=_stream_readable.js
+cfn=Readable.on _stream_readable.js:686
+calls=0 686
+1 1 1
+
+fl=module.js
+fn=Module._compile module.js:510
+510 0 0
+cfi=/work/token-wizard-nodejs-connector/tokenwizard.js
+cfn= tokenwizard.js:1
+calls=0 1
+510 4 4
+cfi=/work/token-wizard-nodejs-connector/index.js
+cfn= index.js:1
+calls=0 1
+510 11 10
+cfi=/work/token-wizard-nodejs-connector/node_modules/nodegrind/nodegrind.js
+cfn= nodegrind.js:1
+calls=0 1
+510 11 10
+
+fl=module.js
+fn=Module._extensions..js module.js:577
+577 0 0
+cfi=module.js
+cfn=Module._compile module.js:510
+calls=0 510
+577 27 24
+
+fl=module.js
+fn=Module.load module.js:478
+478 0 0
+cfi=module.js
+cfn=Module._extensions..js module.js:577
+calls=0 577
+478 27 24
+
+fl=module.js
+fn=tryModuleLoad module.js:443
+443 0 0
+cfi=module.js
+cfn=Module.load module.js:478
+calls=0 478
+443 27 24
+
+fl=net.js
+fn=lookupAndConnect net.js:940
+940 0 0
+cfi=bootstrap_node.js
+cfn=NativeModule.require bootstrap_node.js:419
+calls=0 419
+940 1 1
+
+fl=net.js
+fn=Socket.connect net.js:885
+885 0 0
+cfi=net.js
+cfn=lookupAndConnect net.js:940
+calls=0 940
+885 1 1
+cfi=net.js
+cfn=Socket.connect net.js:885
+calls=0 885
+885 1 1
+
+fl=/work/token-wizard-nodejs-connector/tokenwizard.js
+fn=exports.connect tokenwizard.js:112
+112 0 0
+cfi=net.js
+cfn=Socket.connect net.js:885
+calls=0 885
+112 1 1
+
+fl=_stream_writable.js
+fn=Writable.write _stream_writable.js:225
+225 2 2
+cfi=_stream_writable.js
+cfn=writeOrBuffer _stream_writable.js:295
+calls=0 295
+225 2387 2091
+cfi=_stream_writable.js
+cfn=validChunk _stream_writable.js:203
+calls=0 203
+225 18 16
+
+fl=net.js
+fn=Socket.write net.js:651
+651 2 2
+cfi=_stream_writable.js
+cfn=Writable.write _stream_writable.js:225
+calls=0 225
+651 2407 2109
+
+fl=/work/token-wizard-nodejs-connector/tokenwizard.js
+fn=tryReplaceBuff tokenwizard.js:31
+31 0 0
+cfi=net.js
+cfn=Socket.write net.js:651
+calls=0 651
+31 2407 2109
+
+fl=/work/token-wizard-nodejs-connector/tokenwizard.js
+fn=exports.gen_token tokenwizard.js:93
+93 30 27
+cfi=/work/token-wizard-nodejs-connector/tokenwizard.js
+cfn=tryReplaceBuff tokenwizard.js:31
+calls=0 31
+93 2407 2109
+cfi=
+cfn=CallApiCallbackStub :0
+calls=0 0
+93 11 10
+cfi=buffer.js
+cfn=Buffer.writeUInt32LE buffer.js:1102
+calls=0 1102
+93 124 109
+cfi=
+cfn=copy :0
+calls=0 0
+93 165 145
+cfi=native typedarray.js
+cfn=get length native typedarray.js:1518
+calls=0 1518
+93 19 17
+cfi=/work/token-wizard-nodejs-connector/LinkedList.js
+cfn=LinkedList.that.push LinkedList.js:7
+calls=0 7
+93 26 23
+cfi=/work/token-wizard-nodejs-connector/tokenwizard.js
+cfn=startSendTask tokenwizard.js:38
+calls=0 38
+93 7 7
+cfi=buffer.js
+cfn=Buffer.writeUInt8 buffer.js:1070
+calls=0 1070
+93 22 20
+
+fl=/work/token-wizard-nodejs-connector/index.js
+fn=foo index.js:17
+17 293 257
+cfi=/work/token-wizard-nodejs-connector/tokenwizard.js
+cfn=exports.gen_token tokenwizard.js:93
+calls=0 93
+17 2816 2467
+cfi=buffer.js
+cfn=FastBuffer buffer.js:10
+calls=0 10
+17 121 106
+cfi=buffer.js
+cfn=slice buffer.js:805
+calls=0 805
+17 198 174
+cfi=buffer.js
+cfn=Buffer.from buffer.js:91
+calls=0 91
+17 743 651
+cfi=
+cfn=RecordWriteStub :0
+calls=0 0
+17 4 4
+cfi=timers.js
+cfn=exports.setImmediate timers.js:662
+calls=0 662
+17 242 212
+
+fl=_stream_readable.js
+fn=ReadableState _stream_readable.js:35
+35 1 1
+
+fl=tty.js
+fn=WriteStream tty.js:43
+43 0 0
+cfi=net.js
+cfn=Socket net.js:125
+calls=0 125
+43 1 1
+
+fl=internal/process/stdio.js
+fn=createWritableStdioStream stdio.js:134
+134 0 0
+cfi=tty.js
+cfn=WriteStream tty.js:43
+calls=0 43
+134 1 1
+
+fl=internal/process/stdio.js
+fn=getStdout stdio.js:8
+8 0 0
+cfi=internal/process/stdio.js
+cfn=createWritableStdioStream stdio.js:134
+calls=0 134
+8 1 1
+
+fl=console.js
+fn= console.js:1
+1 0 0
+cfi=internal/process/stdio.js
+cfn=getStdout stdio.js:8
+calls=0 8
+1 1 1
+
+fl=bootstrap_node.js
+fn=get bootstrap_node.js:252
+252 0 0
+cfi=bootstrap_node.js
+cfn=NativeModule.require bootstrap_node.js:419
+calls=0 419
+252 1 1
+
+fl=util.js
+fn=exports.format util.js:68
+68 1 1
+
+fl=_stream_writable.js
+fn=onwrite _stream_writable.js:355
+355 86 76
+cfi=internal/process/next_tick.js
+cfn=nextTick next_tick.js:140
+calls=0 140
+355 168 148
+cfi=push
+cfn=push push:0
+calls=0 0
+355 1 1
+cfi=
+cfn=RecordWriteStub :0
+calls=0 0
+355 1 1
+
+fl=_stream_writable.js
+fn=WritableState.onwrite _stream_writable.js:88
+88 21 19
+cfi=_stream_writable.js
+cfn=onwrite _stream_writable.js:355
+calls=0 355
+88 258 226
+
+fl=net.js
+fn=Socket._writeGeneric net.js:660
+660 460 403
+cfi=_stream_writable.js
+cfn=WritableState.onwrite _stream_writable.js:88
+calls=0 88
+660 279 245
+cfi=
+cfn=CallApiCallbackStub :0
+calls=0 0
+660 3 3
+cfi=net.js
+cfn=createWriteReq net.js:732
+calls=0 732
+660 1492 1307
+cfi=net.js
+cfn=unrefTimer net.js:198
+calls=0 198
+660 1 1
+
+fl=net.js
+fn=Socket._write net.js:728
+728 2 2
+cfi=net.js
+cfn=Socket._writeGeneric net.js:660
+calls=0 660
+728 2236 1959
+cfi=
+cfn=oncomplete :0
+calls=0 0
+728 18 16
+cfi=
+cfn=handle :0
+calls=0 0
+728 6 6
+cfi=
+cfn=VectorStoreICStub :0
+calls=0 0
+728 14 13
+
+fl=_stream_writable.js
+fn=doWrite _stream_writable.js:325
+325 0 0
+cfi=net.js
+cfn=Socket._write net.js:728
+calls=0 728
+325 2278 1996
+
+fl=_stream_writable.js
+fn=writeOrBuffer _stream_writable.js:295
+295 106 93
+cfi=_stream_writable.js
+cfn=doWrite _stream_writable.js:325
+calls=0 325
+295 2278 1996
+cfi=[Symbol.hasInstance]
+cfn=[Symbol.hasInstance] [Symbol.hasInstance]:0
+calls=0 0
+295 2 2
+
+fl=console.js
+fn=Console.log console.js:42
+42 0 0
+cfi=net.js
+cfn=Socket.write net.js:651
+calls=0 651
+42 2 2
+cfi=util.js
+cfn=exports.format util.js:68
+calls=0 68
+42 1 1
+
+fl=/work/token-wizard-nodejs-connector/index.js
+fn=benchmark index.js:34
+34 0 0
+cfi=bootstrap_node.js
+cfn=get bootstrap_node.js:252
+calls=0 252
+34 1 1
+cfi=console.js
+cfn=Console.log console.js:42
+calls=0 42
+34 2 2
+
+fl=/work/token-wizard-nodejs-connector/index.js
+fn= index.js:1
+1 0 0
+cfi=internal/module.js
+cfn=require module.js:17
+calls=0 17
+1 4 4
+cfi=/work/token-wizard-nodejs-connector/tokenwizard.js
+cfn=exports.connect tokenwizard.js:112
+calls=0 112
+1 1 1
+cfi=/work/token-wizard-nodejs-connector/index.js
+cfn=foo index.js:17
+calls=0 17
+1 2 2
+cfi=/work/token-wizard-nodejs-connector/index.js
+cfn=benchmark index.js:34
+calls=0 34
+1 3 3
+
+fl=/work/token-wizard-nodejs-connector/node_modules/nodegrind/nodegrind.js
+fn=main nodegrind.js:100
+100 0 0
+cfi=/work/token-wizard-nodejs-connector/node_modules/nodegrind/nodegrind.js
+cfn=startCPU nodegrind.js:84
+calls=0 84
+100 0 0
+cfi=internal/module.js
+cfn=require module.js:17
+calls=0 17
+100 11 10
+
+fl=/work/token-wizard-nodejs-connector/node_modules/nodegrind/nodegrind.js
+fn= nodegrind.js:1
+1 0 0
+cfi=/work/token-wizard-nodejs-connector/node_modules/nodegrind/nodegrind.js
+cfn=main nodegrind.js:100
+calls=0 100
+1 11 10
+
+fl=_stream_readable.js
+fn=resume_ _stream_readable.js:734
+734 1 1
+
+fl=internal/process/next_tick.js
+fn=_combinedTickCallback next_tick.js:65
+65 417 366
+cfi=_stream_readable.js
+cfn=resume_ _stream_readable.js:734
+calls=0 734
+65 1 1
+cfi=_stream_writable.js
+cfn=afterWrite _stream_writable.js:383
+calls=0 383
+65 14 13
+cfi=
+cfn=get length :0
+calls=0 0
+65 9 8
+
+fl=internal/process/next_tick.js
+fn=_tickCallback next_tick.js:87
+87 9 8
+cfi=internal/process/next_tick.js
+cfn=_combinedTickCallback next_tick.js:65
+calls=0 65
+87 442 388
+cfi=
+cfn=CallApiCallbackStub :0
+calls=0 0
+87 14 13
+cfi=
+cfn=runMicrotasks :0
+calls=0 0
+87 44 39
+cfi=internal/process/promises.js
+cfn=emitPendingUnhandledRejections promises.js:48
+calls=0 48
+87 26 23
+
+fl=module.js
+fn=Module.runMain module.js:602
+602 0 0
+cfi=module.js
+cfn=Module._load module.js:412
+calls=0 412
+602 11 10
+cfi=internal/process/next_tick.js
+cfn=_tickCallback next_tick.js:87
+calls=0 87
+602 1 1
+
+fl=bootstrap_node.js
+fn=run bootstrap_node.js:375
+375 0 0
+cfi=module.js
+cfn=Module.runMain module.js:602
+calls=0 602
+375 12 11
+
+fl=bootstrap_node.js
+fn=startup bootstrap_node.js:12
+12 0 0
+cfi=bootstrap_node.js
+cfn=run bootstrap_node.js:375
+calls=0 375
+12 12 11
+
+fl=bootstrap_node.js
+fn= bootstrap_node.js:10
+10 0 0
+cfi=bootstrap_node.js
+cfn=startup bootstrap_node.js:12
+calls=0 12
+10 12 11
+
+fl=
+fn=(program) :0
+0 1644 1440
+
+fl=/work/token-wizard-nodejs-connector/tokenwizard.js
+fn= tokenwizard.js:113
+113 0 0
+cfi=console.js
+cfn=Console.log console.js:42
+calls=0 42
+113 1 1
+
+fl=events.js
+fn=g events.js:287
+287 0 0
+cfi=/work/token-wizard-nodejs-connector/tokenwizard.js
+cfn= tokenwizard.js:113
+calls=0 113
+287 1 1
+
+fl=events.js
+fn=emitNone events.js:84
+84 0 0
+cfi=events.js
+cfn=g events.js:287
+calls=0 287
+84 1 1
+
+fl=events.js
+fn=emit events.js:136
+136 2 2
+cfi=events.js
+cfn=emitNone events.js:84
+calls=0 84
+136 1 1
+cfi=events.js
+cfn=emitOne events.js:94
+calls=0 94
+136 842 738
+
+fl=net.js
+fn=afterConnect net.js:1049
+1049 0 0
+cfi=events.js
+cfn=emit events.js:136
+calls=0 136
+1049 1 1
+
+fl=native runtime.js
+fn=ToPositiveInteger native runtime.js:27
+27 22 20
+
+fl=native typedarray.js
+fn=Uint8ArrayConstructByArrayBuffer native typedarray.js:144
+144 156 137
+cfi=native runtime.js
+cfn=ToPositiveInteger native runtime.js:27
+calls=0 27
+144 22 20
+
+fl=native typedarray.js
+fn=Uint8Array native typedarray.js:241
+241 226 198
+cfi=native typedarray.js
+cfn=Uint8ArrayConstructByArrayBuffer native typedarray.js:144
+calls=0 144
+241 179 157
+cfi=native typedarray.js
+cfn=Uint8ArrayConstructByLength native typedarray.js:184
+calls=0 184
+241 6 6
+
+fl=
+fn=StrictEqualStub :0
+0 6 6
+
+fl=buffer.js
+fn=FastBuffer buffer.js:10
+10 176 155
+cfi=native typedarray.js
+cfn=Uint8Array native typedarray.js:241
+calls=0 241
+10 412 361
+cfi=
+cfn=StrictEqualStub :0
+calls=0 0
+10 6 6
+
+fl=buffer.js
+fn=slice buffer.js:805
+805 89 78
+cfi=buffer.js
+cfn=FastBuffer buffer.js:10
+calls=0 10
+805 466 409
+
+fl=native v8natives.js
+fn=isFinite native v8natives.js:32
+32 94 83
+
+fl=
+fn=asciiWrite :0
+0 220 193
+
+fl=
+fn=CallApiCallbackStub :0
+0 89 78
+
+fl=buffer.js
+fn=Buffer.write buffer.js:704
+704 71 63
+cfi=native v8natives.js
+cfn=isFinite native v8natives.js:32
+calls=0 32
+704 94 83
+cfi=
+cfn=asciiWrite :0
+calls=0 0
+704 220 193
+cfi=
+cfn=CallApiCallbackStub :0
+calls=0 0
+704 9 8
+
+fl=buffer.js
+fn=byteLength buffer.js:343
+343 23 21
+
+fl=native typedarray.js
+fn=Uint8ArrayConstructByLength native typedarray.js:184
+184 6 6
+
+fl=buffer.js
+fn=createUnsafeBuffer buffer.js:35
+35 0 0
+cfi=buffer.js
+cfn=FastBuffer buffer.js:10
+calls=0 10
+35 7 7
+
+fl=buffer.js
+fn=createPool buffer.js:0
+0 0 0
+cfi=buffer.js
+cfn=createUnsafeBuffer buffer.js:35
+calls=0 35
+0 7 7
+
+fl=buffer.js
+fn=fromString buffer.js:186
+186 141 124
+cfi=buffer.js
+cfn=slice buffer.js:805
+calls=0 805
+186 129 113
+cfi=
+cfn=CallApiCallbackStub :0
+calls=0 0
+186 3 3
+cfi=buffer.js
+cfn=Buffer.write buffer.js:704
+calls=0 704
+186 396 347
+cfi=buffer.js
+cfn=byteLength buffer.js:343
+calls=0 343
+186 23 21
+cfi=buffer.js
+cfn=createPool buffer.js:0
+calls=0 0
+186 3 3
+
+fl=
+fn=isArrayBuffer :0
+0 14 13
+
+fl=
+fn=isSharedArrayBuffer :0
+0 2 2
+
+fl=buffer.js
+fn=Buffer.from buffer.js:91
+91 28 25
+cfi=buffer.js
+cfn=fromString buffer.js:186
+calls=0 186
+91 697 611
+cfi=
+cfn=isArrayBuffer :0
+calls=0 0
+91 14 13
+cfi=
+cfn=isSharedArrayBuffer :0
+calls=0 0
+91 2 2
+
+fl=net.js
+fn=createWriteReq net.js:732
+732 1475 1292
+cfi=
+cfn=CallApiCallbackStub :0
+calls=0 0
+732 17 15
+
+fl=net.js
+fn=unrefTimer net.js:198
+198 1 1
+
+fl=push
+fn=push push:0
+0 39 35
+
+fl=
+fn=RecordWriteStub :0
+0 9 8
+
+fl=
+fn=oncomplete :0
+0 18 16
+
+fl=
+fn=handle :0
+0 6 6
+
+fl=
+fn=VectorStoreICStub :0
+0 14 13
+
+fl=[Symbol.hasInstance]
+fn=[Symbol.hasInstance] [Symbol.hasInstance]:0
+0 6 6
+
+fl=_stream_writable.js
+fn=validChunk _stream_writable.js:203
+203 17 15
+cfi=[Symbol.hasInstance]
+cfn=[Symbol.hasInstance] [Symbol.hasInstance]:0
+calls=0 0
+203 1 1
+
+fl=buffer.js
+fn=checkInt buffer.js:0
+0 4 4
+cfi=[Symbol.hasInstance]
+cfn=[Symbol.hasInstance] [Symbol.hasInstance]:0
+calls=0 0
+0 3 3
+
+fl=buffer.js
+fn=Buffer.writeUInt32LE buffer.js:1102
+1102 117 103
+cfi=buffer.js
+cfn=checkInt buffer.js:0
+calls=0 0
+1102 6 6
+
+fl=
+fn=copy :0
+0 293 257
+
+fl=native typedarray.js
+fn=get length native typedarray.js:1518
+1518 22 20
+
+fl=/work/token-wizard-nodejs-connector/LinkedList.js
+fn=LinkedList.that.push LinkedList.js:7
+7 26 23
+
+fl=/work/token-wizard-nodejs-connector/tokenwizard.js
+fn=startSendTask tokenwizard.js:38
+38 7 7
+
+fl=buffer.js
+fn=Buffer.writeUInt8 buffer.js:1070
+1070 21 19
+cfi=buffer.js
+cfn=checkInt buffer.js:0
+calls=0 0
+1070 1 1
+
+fl=
+fn=get _needImmediateCallback :0
+0 50 44
+
+fl=timers.js
+fn=createImmediate timers.js:689
+689 127 112
+cfi=
+cfn=get _needImmediateCallback :0
+calls=0 0
+689 50 44
+
+fl=timers.js
+fn=exports.setImmediate timers.js:662
+662 63 56
+cfi=timers.js
+cfn=createImmediate timers.js:689
+calls=0 689
+662 178 156
+
+fl=timers.js
+fn=runCallback timers.js:631
+631 47 42
+cfi=/work/token-wizard-nodejs-connector/index.js
+cfn=foo index.js:17
+calls=0 17
+631 4417 3869
+cfi=
+cfn=CallApiCallbackStub :0
+calls=0 0
+631 6 6
+
+fl=timers.js
+fn=tryOnImmediate timers.js:606
+606 82 72
+cfi=timers.js
+cfn=runCallback timers.js:631
+calls=0 631
+606 4472 3917
+
+fl=timers.js
+fn=processImmediate timers.js:559
+559 0 0
+cfi=timers.js
+cfn=tryOnImmediate timers.js:606
+calls=0 606
+559 4554 3989
+
+fl=_stream_writable.js
+fn=afterWrite _stream_writable.js:383
+383 14 13
+
+fl=
+fn=get length :0
+0 9 8
+
+fl=
+fn=runMicrotasks :0
+0 44 39
+
+fl=internal/process/promises.js
+fn=emitPendingUnhandledRejections promises.js:48
+48 26 23
+
+fl=buffer.js
+fn=allocate buffer.js:0
+0 0 0
+cfi=buffer.js
+cfn=slice buffer.js:0
+calls=0 0
+0 100 88
+cfi=buffer.js
+cfn=createPool buffer.js:0
+calls=0 0
+0 4 4
+
+fl=buffer.js
+fn=Buffer.allocUnsafe buffer.js:139
+139 65 57
+cfi=buffer.js
+cfn=allocate buffer.js:0
+calls=0 0
+139 105 92
+
+fl=
+fn=now :0
+0 65 57
+
+fl=
+fn=LoadDictionaryElementStub :0
+0 10 9
+
+fl=
+fn=start :0
+0 1 1
+
+fl=
+fn=Timer :0
+0 1 1
+
+fl=timers.js
+fn=TimersList timers.js:0
+0 1 1
+cfi=
+cfn=Timer :0
+calls=0 0
+0 1 1
+
+fl=timers.js
+fn=createTimersList timers.js:0
+0 1 1
+cfi=
+cfn=start :0
+calls=0 0
+0 1 1
+cfi=timers.js
+cfn=TimersList timers.js:0
+calls=0 0
+0 2 2
+
+fl=timers.js
+fn=insert timers.js:0
+0 7 7
+cfi=
+cfn=CallApiCallbackStub :0
+calls=0 0
+0 10 9
+cfi=
+cfn=now :0
+calls=0 0
+0 65 57
+cfi=
+cfn=LoadDictionaryElementStub :0
+calls=0 0
+0 10 9
+cfi=timers.js
+cfn=createTimersList timers.js:0
+calls=0 0
+0 4 4
+
+fl=timers.js
+fn=exports.active timers.js:103
+103 1 1
+cfi=timers.js
+cfn=insert timers.js:0
+calls=0 0
+103 98 86
+
+fl=timers.js
+fn=createSingleTimeout timers.js:346
+346 1 1
+cfi=timers.js
+cfn=exports.active timers.js:103
+calls=0 103
+346 99 87
+
+fl=timers.js
+fn=exports.setTimeout timers.js:325
+325 60 53
+cfi=timers.js
+cfn=createSingleTimeout timers.js:346
+calls=0 346
+325 100 88
+
+fl=/work/token-wizard-nodejs-connector/LinkedList.js
+fn=LinkedList.that.pop LinkedList.js:18
+18 90 79
+
+fl=
+fn=KeyedLoadICStub :0
+0 3 3
+
+fl=/work/token-wizard-nodejs-connector/tokenwizard.js
+fn=handlePacket tokenwizard.js:125
+125 63 56
+cfi=
+cfn=CallApiCallbackStub :0
+calls=0 0
+125 9 8
+cfi=
+cfn=RecordWriteStub :0
+calls=0 0
+125 3 3
+cfi=
+cfn=copy :0
+calls=0 0
+125 123 108
+cfi=native typedarray.js
+cfn=get length native typedarray.js:1518
+calls=0 1518
+125 3 3
+cfi=buffer.js
+cfn=Buffer.allocUnsafe buffer.js:139
+calls=0 139
+125 170 149
+cfi=timers.js
+cfn=exports.setTimeout timers.js:325
+calls=0 325
+125 160 141
+cfi=/work/token-wizard-nodejs-connector/LinkedList.js
+cfn=LinkedList.that.pop LinkedList.js:18
+calls=0 18
+125 90 79
+cfi=
+cfn=KeyedLoadICStub :0
+calls=0 0
+125 3 3
+
+fl=/work/token-wizard-nodejs-connector/tokenwizard.js
+fn=handleRecv tokenwizard.js:172
+172 62 55
+cfi=/work/token-wizard-nodejs-connector/tokenwizard.js
+cfn=slice tokenwizard.js:0
+calls=0 0
+172 127 112
+cfi=
+cfn=CallApiCallbackStub :0
+calls=0 0
+172 3 3
+cfi=/work/token-wizard-nodejs-connector/tokenwizard.js
+cfn=handlePacket tokenwizard.js:125
+calls=0 125
+172 627 550
+
+fl=/work/token-wizard-nodejs-connector/tokenwizard.js
+fn= tokenwizard.js:189
+189 15 14
+cfi=
+cfn=copy :0
+calls=0 0
+189 4 4
+cfi=/work/token-wizard-nodejs-connector/tokenwizard.js
+cfn=handleRecv tokenwizard.js:172
+calls=0 172
+189 822 720
+
+fl=events.js
+fn=emitOne events.js:94
+94 0 0
+cfi=/work/token-wizard-nodejs-connector/tokenwizard.js
+cfn= tokenwizard.js:189
+calls=0 189
+94 842 738
+
+fl=_stream_readable.js
+fn=maybeReadMore _stream_readable.js:443
+443 0 0
+cfi=internal/process/next_tick.js
+cfn=nextTick next_tick.js:140
+calls=0 140
+443 2 2
+
+fl=_stream_readable.js
+fn=Readable.read _stream_readable.js:271
+271 1 1
+
+fl=_stream_readable.js
+fn=readableAddChunk _stream_readable.js:147
+147 2 2
+cfi=events.js
+cfn=emit events.js:136
+calls=0 136
+147 844 740
+cfi=_stream_readable.js
+cfn=maybeReadMore _stream_readable.js:443
+calls=0 443
+147 2 2
+cfi=_stream_readable.js
+cfn=Readable.read _stream_readable.js:271
+calls=0 271
+147 1 1
+
+fl=_stream_readable.js
+fn=Readable.push _stream_readable.js:123
+123 1 1
+cfi=_stream_readable.js
+cfn=readableAddChunk _stream_readable.js:147
+calls=0 147
+123 850 745
+
+fl=net.js
+fn=onread net.js:530
+530 0 0
+cfi=_stream_readable.js
+cfn=Readable.push _stream_readable.js:123
+calls=0 123
+530 851 746
+
+fl=internal/linkedlist.js
+fn=remove linkedlist.js:35
+35 0 0
+
+fl=/work/token-wizard-nodejs-connector/index.js
+fn= index.js:18
+18 17 15
+
+fl=/work/token-wizard-nodejs-connector/tokenwizard.js
+fn= tokenwizard.js:145
+145 95 84
+cfi=/work/token-wizard-nodejs-connector/index.js
+cfn= index.js:18
+calls=0 18
+145 17 15
+
+fl=timers.js
+fn=ontimeout timers.js:361
+361 7 7
+cfi=/work/token-wizard-nodejs-connector/tokenwizard.js
+cfn= tokenwizard.js:145
+calls=0 145
+361 113 99
+
+fl=timers.js
+fn=tryOnTimeout timers.js:233
+233 23 21
+cfi=timers.js
+cfn=ontimeout timers.js:361
+calls=0 361
+233 121 106
+
+fl=timers.js
+fn=listOnTimeout timers.js:161
+161 3 3
+cfi=internal/linkedlist.js
+cfn=remove linkedlist.js:35
+calls=0 35
+161 0 0
+cfi=timers.js
+cfn=tryOnTimeout timers.js:233
+calls=0 233
+161 144 127
+
+fl=
+fn=(idle) :0
+0 1157 1014
+
+fl=
+fn=(garbage collector) :0
+0 93 82
+
+fl=
+fn=(root) :0
+0 0 0
+cfi=internal/process/next_tick.js
+cfn=_tickCallback next_tick.js:87
+calls=0 87
+0 536 470
+cfi=bootstrap_node.js
+cfn= bootstrap_node.js:10
+calls=0 10
+0 12 11
+cfi=
+cfn=(program) :0
+calls=0 0
+0 1644 1440
+cfi=net.js
+cfn=afterConnect net.js:1049
+calls=0 1049
+0 1 1
+cfi=timers.js
+cfn=processImmediate timers.js:559
+calls=0 559
+0 4554 3989
+cfi=net.js
+cfn=onread net.js:530
+calls=0 530
+0 851 746
+cfi=timers.js
+cfn=listOnTimeout timers.js:161
+calls=0 161
+0 148 130
+cfi=
+cfn=(idle) :0
+calls=0 0
+0 1157 1014
+cfi=
+cfn=(garbage collector) :0
+calls=0 0
+0 93 82
+

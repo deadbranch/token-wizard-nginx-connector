@@ -3,8 +3,6 @@ var LinkedList = require('./LinkedList').LinkedList;
 var Buffer = require('buffer').Buffer;
 var fs = require('fs');
 
-console.log(a);
-
 var ClientCommands = {
     genToken : 0x0,
     invalidateToken : 0x1,
@@ -22,10 +20,35 @@ var client = new net.Socket();
 exports.client = client;
 var tokenLength;
 
-var sendBuff = new Buffer(65536);
-var sendBuffWritePos = 0;
-var isSendTaskStarted = false;
+var bufLength = 65536;
 
+var sendBuff = new Buffer(bufLength);
+var sbWritePos = 0;
+var sendTaskStarted = false;
+
+var startDelay = 5;
+
+function tryReplaceBuff(size) {
+    if((sbWritePos + size) > bufLength) {
+        //console.log(sbWritePos);
+        client.write(sendBuff.slice(0, sbWritePos));
+        sbWritePos = 0;
+    }
+}
+
+function startSendTask() {
+    if(sendTaskStarted)
+        return;
+    sendTaskStarted = true;
+    setTimeout(function () {
+        if(sbWritePos)
+        {
+            client.write(sendBuff.slice(0, sbWritePos));
+            sbWritePos = 0;
+        }
+        sendTaskStarted = false;
+    }, startDelay)
+}
 
 var requestQueue = new LinkedList();
 
@@ -40,11 +63,14 @@ exports.get_token = function(token, handler) {
         return;
     }
     token += '\0';
-    var buff = new Buffer(token.length+1+4);
+    var packetLength = token.length+1+4;
+    tryReplaceBuff(packetLength);
+    var buff = sendBuff.slice(sbWritePos, sbWritePos + packetLength);
     buff.writeUInt32LE(token.length+1, 0);
     buff.writeUInt8(ClientCommands.getToken, 4);
     buff.write(token, 5, token.length, 'ascii');
-    client.write(buff);
+    sbWritePos += packetLength;
+    startSendTask();
     requestQueue.push(handler);
 };
 
@@ -55,12 +81,15 @@ exports.invalidate =  function(token, handler) {
         return;
     }
     token += '\0';
-    var buff = new Buffer(token.length+1+4);
+    var packetLength = token.length+1+4;
+    tryReplaceBuff(packetLength);
+    var buff = sendBuff.slice(sbWritePos, sbWritePos + packetLength);
     buff.writeUInt32LE(token.length+1, 0);
     buff.writeUInt8(ClientCommands.invalidateToken, 4);
     buff.write(token, 5, token.length, 'ascii');
-    client.write(buff);
     requestQueue.push(handler);
+    sbWritePos += packetLength;
+    startSendTask();
 };
 
 exports.gen_token = function(dataBuf, lifeTime, handler) {
@@ -69,17 +98,20 @@ exports.gen_token = function(dataBuf, lifeTime, handler) {
         handler(true);
         return;
     }
-    var buff = new Buffer(dataBuf.length+1+4+4);
+
+    var packetLength = dataBuf.length+1+4+4;
+    tryReplaceBuff(packetLength);
+    var buff = sendBuff.slice(sbWritePos, sbWritePos + packetLength);
     dataBuf.copy(buff, 9, 0, dataBuf.length);
     buff.writeUInt32LE(dataBuf.length+1+4, 0);
     buff.writeUInt8(ClientCommands.genToken, 4);
     buff.writeUInt32LE(lifeTime, 5);
-    client.write(buff);
     requestQueue.push(handler);
+    sbWritePos += packetLength;
+    startSendTask();
 };
 
 exports.connect = function (ip, port) {
-
     client.connect(10200, '127.0.0.1', function() {
         console.log('Connected');
         //client.write('Hello, server! Love, Client.');
